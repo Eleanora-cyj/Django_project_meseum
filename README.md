@@ -1,9 +1,11 @@
 # Django_project_meseum
+*It's a collaborative project with @wwwangxinyi.
 
-Many museums have established their museum databases, hold digital exhibitions, and provided virtual visit services to internet tourists. However, despite the museumsâ great efforts, the benefits of these services do not reach everyone. I would like to build a museum-related website based on various museum data sets that provides users a quick search on Eastern Asian Culture. 
+## Introduction
+Many museums have established their museum databases, hold digital exhibitions, and provided virtual visit services to internet tourists. However, the benefits of these services do not reach everyone. A museum-related website would be built based on various museum datasets, providing users a quick search on Eastern Asian Culture. 
 
 ## Databases
-Followings are the database that I would like to utilize (their websites can also be referred as similar websites):
+The data will be generated from these three website databases:
 1. The British Museum, London, United Kingdom
     - Website: https://www.britishmuseum.org/collection
 2. The Metropolitan Museum of Art, Washington, D.C., United States 
@@ -14,7 +16,7 @@ Followings are the database that I would like to utilize (their websites can als
     - API: https://www.brooklynmuseum.org/api/v2/ 
 
 ## Data Structure
-Followings are the data that the collection related dataset would like to store.
+The collection related dataset would be stored as following:
 | Field       | Type   | Notes                                                                                                                       |   |   |
 |-------------|--------|-----------------------------------------------------------------------------------------------------------------------------|---|---|
 | ID          | int    | Identification number for each object                                                                                       |   |   |
@@ -29,7 +31,8 @@ Followings are the data that the collection related dataset would like to store.
 | Description | string | The detailed introduction of the object                                                                                     |   |   |
 
 
-In detail, there will be six table: Collection(id, title, date, image, description), Museum(id, name), Country(id, name), Category(id, name), Artist(id, name), User(id, nickname, comments, rating, collection)
+In detail, there will be six tables: Collection(id, title, date, image, description), Museum(id, name), Country(id, name), Category(id, name), Artist(id, name), User(id, nickname, comments, rating, collection)
 
 ## User Interaction
-I would like to let users use manually created accounts or use a Google social login. In the website they can make comments, collect and rank on the collections. 
+Users will manually created accounts or use a Google account login. In the website they can make comments, collect and rank on the collections. 
+
