@@ -1,11 +1,11 @@
-# Django_project_meseum
+# Museum-Related Information Search Engine in Django
 *It's a collaborative project with @wwwangxinyi.
 
 ## Introduction
 Many museums have established their museum databases, hold digital exhibitions, and provided virtual visit services to internet tourists. However, the benefits of these services do not reach everyone. A museum-related website would be built based on various museum datasets, providing users a quick search on Eastern Asian Culture. 
 
 ## Databases
-The data will be generated from these three website databases:
+The data will be generated from these three website databases: (can be considered as similar websites)
 1. The British Museum, London, United Kingdom
     - Website: https://www.britishmuseum.org/collection
 2. The Metropolitan Museum of Art, Washington, D.C., United States 
