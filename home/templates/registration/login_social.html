@@ -1,0 +1,49 @@
+{% extends "base_bootstrap.html" %}
+{% block mycss %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'colls/css/index_style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'colls/css/login_style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'colls/css/html5reset.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+{% endblock %}
+{% block content %}
+<div id="web_bg"></div>
+<div class="index_container">
+  <div id="item1">
+    <h1>
+      EXPLORE <br />ASIAN <br /> HISTORY
+    </h1>
+    <p>This is a course project of UMSI - SI664 Database App Design. </p>
+  </div>
+  <div id="item2">
+    {% load crispy_forms_tags %}
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <input type="submit" class="btn btn-primary" value="Login Locally" />
+      <input type="hidden" name="next" value="{{ next }}" />
+    </form>
+
+    {% if settings.SOCIAL_AUTH_GITHUB_KEY %}
+    <hr />
+    <a class="btn btn-info" role="button" href="{% url 'social:begin' 'github' %}?next={{ next }}">
+      <i class="fa fa-github" aria-hidden="true"></i>
+      Login with GitHub</a>
+    {% endif %}
+    <br /><br />
+    {% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
+    {% if next %}
+      {% if user.is_authenticated %}
+      <p>Your account doesn't have access to this page. To proceed,
+        please login with an account that has access.</p>
+      {% else %}
+      <p>Please login to see this site.</p>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
