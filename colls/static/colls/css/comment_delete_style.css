@@ -1,0 +1,58 @@
+#web_bg {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    min-width: 1000px;
+    z-index: -10;
+    zoom: 1;
+    background-color: #393e46;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -o-background-size: cover;
+    background-position: center 0;
+}
+
+.coll_container{
+    width: 60%;
+    padding: 30px;
+    background-color: white;
+    margin: 0 auto;
+}
+
+.coll_container h1{
+    line-height: 200%;
+    font-size: 24px;
+}
+p{
+    line-height: 200%;
+}
+
+.review{
+    color: gray;
+}
+.submit_btn{
+    margin: 5px 0;
+    padding: 5px;
+    width: 15%;
+    background-color: #ffd369;
+    border: 1px solid #ffd369;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 3px;
+}
+
+
+.submit_btn:hover {
+    background: #fddd91;
+}
+
+.submit_btn::after {
+    content: "";
+    clear: both;
+    display: table;
+}

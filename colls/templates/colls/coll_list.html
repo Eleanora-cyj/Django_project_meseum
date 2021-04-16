@@ -1,0 +1,88 @@
+{% extends "base_menu.html" %}
+{% block mycss %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'colls/css/index_style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'colls/css/html5reset.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+{% endblock %}
+{% block content %}
+<div id="web_bg"></div>
+<div class="index_container">
+    <div id="item1">
+        <h1>
+            EXPLORE <br />ASIAN <br /> HISTORY
+        </h1>
+        <p>This is a course project of UMSI - SI 664 Database App Design. </p>
+    </div>
+    <div id="item2">
+        <img id="cover_img" alt="cover image" src="{% static 'colls/img/background_1.jpg' %}">
+    </div>
+</div>
+<div class="wrap">
+    <div class="search">
+        <form class="example">
+            <input type="text" placeholder="Begin Your Exploration!" name="query" {% if search %} value="{{ search }}"
+                {% endif %}>
+            <div class="undo"><a href="{% url 'colls:all' %}"><i class="fa fa-undo"></i></a></div>
+            <button type="submit"><img width="20px" alt="search icon"
+                    src="{% static 'colls/img/search.png' %}"></button>
+            
+        </form>
+    </div>
+</div>
+<!-- <div id='query'> Your search key word is: {{query}}</div> -->
+<div class="grid">
+    {% for coll in coll_list %}
+    <div class="grid-item">
+        <img src="{{coll.image}}" alt="collection photography">
+        <h2><a href="{% url 'colls:coll_detail'  coll.id %}">{{ coll.title }}</a></h2>
+
+        {% if user.is_authenticated %}
+        <a href="#" onclick="favPost('{% url 'colls:coll_unfavorite' coll.id %}', {{ coll.id }} );return false;"
+            {% if coll.id not in favorites %} style="display: none;" {% endif %} id="favorite_star_{{coll.id}}">
+            <span class="fa-stack" style="vertical-align: middle;">
+                <i class="fa fa-star fa-stack-1x" style="color: orange;"></i>
+                <i class="fa fa-star-o fa-stack-1x"></i>
+            </span>
+        </a>
+
+        <a href="#" onclick="favPost('{% url 'colls:coll_favorite' coll.id %}', {{ coll.id }} );return false;"
+            {% if coll.id in favorites %} style="display: none;" {% endif %} id="unfavorite_star_{{coll.id}}">
+            <span class="fa-stack" style="vertical-align: middle;">
+                <i class="fa fa-star fa-stack-1x" style="display: none; color: orange;"></i>
+                <i class="fa fa-star-o fa-stack-1x"></i>
+            </span>
+        </a>
+        {% endif %}
+
+        <div class="text">
+            <p>Museum | {{coll.museum}}</p>
+            <p>Categories | {{coll.category}}</p>
+            <p>Culture | {{coll.culture}}</p>
+            <p><a href="{% url 'colls:coll_detail'  coll.id %}">See Detail >>></a></p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<script>
+    $(".grid").imagesLoaded(function () {
+        $(".grid").masonry({
+            itemSelector: ".grid-item"
+        });
+    });
+</script>
+<script>
+    function favPost(url, ad_id) {
+        console.log('Requesting JSON');
+        $.post(url, {}, function (rowz) {
+            console.log(url, 'finished');
+            $("#unfavorite_star_" + ad_id).toggle();
+            $("#favorite_star_" + ad_id).toggle();
+        }).fail(function (xhr) {
+            alert('Url failed with ' + xhr.status + ' ' + url);
+        });
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base_menu.html" %}
+{% block mycss %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'colls/css/comment_delete_style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'colls/css/html5reset.css' %}">
+{% endblock %}
+{% block content %}
+<div id="web_bg"></div>
+<div class="coll_container">
+  <h1>Delete Comment</h1>
+
+  <p>Are you sure you want to delete your review</p>
+  <p class="review">{{ comment.text }}?</p>
+  <br />
+  <form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" class="submit_btn" value="Yes, delete.">
+    <a href="{% url 'colls:coll_detail' comment.coll.id %}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}
